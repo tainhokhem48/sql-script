@@ -1,33 +1,10 @@
--- phpMyAdmin SQL Dump
--- version 5.2.1
--- https://www.phpmyadmin.net/
---
--- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th7 24, 2024 lúc 07:41 PM
--- Phiên bản máy phục vụ: 10.4.32-MariaDB
--- Phiên bản PHP: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
 SET time_zone = "+00:00";
 
-
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
-
---
--- Cơ sở dữ liệu: `coffehouse`
---
 CREATE DATABASE IF NOT EXISTS `coffehouse` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
 USE `coffehouse`;
-
--- --------------------------------------------------------
-
---
--- Cấu trúc bảng cho bảng `account`
---
 
 CREATE TABLE `account` (
   `account_id` int(10) NOT NULL,
@@ -39,10 +16,6 @@ CREATE TABLE `account` (
   `role_id` int(10) DEFAULT NULL,
   `status` tinyint(1) DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Đang đổ dữ liệu cho bảng `account`
---
 
 INSERT INTO `account` (`account_id`, `username`, `image`, `email`, `password`, `phone`, `role_id`, `status`) VALUES
 (18, 'Sơn Trần', '52635f91-4479-4f64-9a53-1883d9c63688.jpg', 'son@gmail.com', '$2a$10$REP.Ux.0JLyL5aozT0Deh.mJlvQQK4JNhKRk1uilAOlNSKTwDL54O', '0938583183', 2, 1),
@@ -57,22 +30,12 @@ INSERT INTO `account` (`account_id`, `username`, `image`, `email`, `password`, `
 (27, 'Tiểu Thúy', '24e6fe33-646a-400d-84f0-60d82109083f.jpg', 'thuy@gmail.com', '$2a$10$ZiINg1n4o27l22hSCqrTaeiEho26AGDMmq70wiIXktD/Bdf3II9i2', '0992345678', 3, 1),
 (29, 'Admin', NULL, 'anhsontran.q7@gmail.com', '$2a$10$ZkBMn7ZIVGzrDi90Rd7yU.su4oTK3hurAAVVA1AfVFRYGWvdLWXYm', NULL, 1, 1);
 
--- --------------------------------------------------------
-
---
--- Cấu trúc bảng cho bảng `category`
---
-
 CREATE TABLE `category` (
   `category_id` int(10) NOT NULL,
   `category_name` varchar(255) NOT NULL,
   `description` varchar(255) DEFAULT NULL,
   `status` tinyint(1) DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Đang đổ dữ liệu cho bảng `category`
---
 
 INSERT INTO `category` (`category_id`, `category_name`, `description`, `status`) VALUES
 (10, 'Coffee', 'Robusta, Arabica, Moka,...', 1),
@@ -84,12 +47,6 @@ INSERT INTO `category` (`category_id`, `category_name`, `description`, `status`)
 (16, 'as', 'asssss', 2),
 (17, 'som', 'aaaaaaầvfbgbgbgbg', 2),
 (18, 'dfvfdvfvfvfvfv', 'vfdvdfvfhnnvfvfvf', 2);
-
--- --------------------------------------------------------
-
---
--- Cấu trúc bảng cho bảng `control`
---
 
 CREATE TABLE `control` (
   `control_id` int(10) NOT NULL,
@@ -104,18 +61,8 @@ CREATE TABLE `control` (
   `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Đang đổ dữ liệu cho bảng `control`
---
-
 INSERT INTO `control` (`control_id`, `working_time_id`, `check_in`, `check_out`, `check_in_pay`, `check_out_pay`, `account_id`, `staff_list`, `created_at`, `updated_at`) VALUES
 (222, 2, '2024-07-25 00:35:08', '2024-07-25 00:39:58', 200, 249, 18, 'Linh Linh, Nam Long', '2024-07-24 17:35:08', '2024-07-24 17:40:02');
-
--- --------------------------------------------------------
-
---
--- Cấu trúc bảng cho bảng `orders`
---
 
 CREATE TABLE `orders` (
   `order_id` int(10) NOT NULL,
@@ -127,22 +74,12 @@ CREATE TABLE `orders` (
   `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Đang đổ dữ liệu cho bảng `orders`
---
-
 INSERT INTO `orders` (`order_id`, `account_id`, `total`, `description`, `day`, `created_at`, `updated_at`) VALUES
 (51, 18, 9.7, '\nRobusta L 50% đường', '2024-07-25 00:35:57', '2024-07-24 17:35:57', '2024-07-24 17:35:57'),
 (52, 18, 7, '', '2024-07-25 00:36:46', '2024-07-24 17:36:46', '2024-07-24 17:36:46'),
 (53, 18, 12.3, '\nGinger cinnamon  S 50% đường', '2024-07-25 00:37:32', '2024-07-24 17:37:32', '2024-07-24 17:37:32'),
 (54, 18, 7.8, '', '2024-07-25 00:37:49', '2024-07-24 17:37:49', '2024-07-24 17:37:49'),
 (55, 18, 12.2, '\nPomegranate juice S 50% đường', '2024-07-25 00:39:13', '2024-07-24 17:39:13', '2024-07-24 17:39:13');
-
--- --------------------------------------------------------
-
---
--- Cấu trúc bảng cho bảng `order_detail`
---
 
 CREATE TABLE `order_detail` (
   `order_detail_id` int(10) NOT NULL,
@@ -154,10 +91,6 @@ CREATE TABLE `order_detail` (
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Đang đổ dữ liệu cho bảng `order_detail`
---
 
 INSERT INTO `order_detail` (`order_detail_id`, `order_id`, `product_detail_id`, `quantity`, `table_number`, `status`, `created_at`, `updated_at`) VALUES
 (104, 51, 29, 1, 3, 1, '2024-07-24 17:35:57', '2024-07-24 17:35:57'),
@@ -175,12 +108,6 @@ INSERT INTO `order_detail` (`order_detail_id`, `order_id`, `product_detail_id`, 
 (116, 55, 71, 1, 6, 1, '2024-07-24 17:39:13', '2024-07-24 17:39:13'),
 (117, 55, 73, 1, 6, 1, '2024-07-24 17:39:13', '2024-07-24 17:39:13');
 
--- --------------------------------------------------------
-
---
--- Cấu trúc bảng cho bảng `product`
---
-
 CREATE TABLE `product` (
   `product_id` int(10) NOT NULL,
   `category_id` int(10) NOT NULL,
@@ -191,10 +118,6 @@ CREATE TABLE `product` (
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Đang đổ dữ liệu cho bảng `product`
---
 
 INSERT INTO `product` (`product_id`, `category_id`, `product_name`, `image`, `description`, `status`, `created_at`, `updated_at`) VALUES
 (17, 10, 'Americano', 'americano.jpg', 'Hot coffee', 1, '2024-07-24 15:53:36', '2024-07-24 15:53:36'),
@@ -232,12 +155,6 @@ INSERT INTO `product` (`product_id`, `category_id`, `product_name`, `image`, `de
 (50, 14, 'Fruit soda', 'soda_sunset.jpg', 'Iced fruit soda', 1, '2024-07-24 17:30:17', '2024-07-24 17:30:17'),
 (51, 14, 'Hawaiian soda', 'soda_traicay.jpg', 'Iced Hawaiian soda', 1, '2024-07-24 17:32:25', '2024-07-24 17:32:25');
 
--- --------------------------------------------------------
-
---
--- Cấu trúc bảng cho bảng `product_detail`
---
-
 CREATE TABLE `product_detail` (
   `product_detail_id` int(10) NOT NULL,
   `product_id` int(10) NOT NULL,
@@ -247,10 +164,6 @@ CREATE TABLE `product_detail` (
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Đang đổ dữ liệu cho bảng `product_detail`
---
 
 INSERT INTO `product_detail` (`product_detail_id`, `product_id`, `size`, `price`, `status`, `created_at`, `updated_at`) VALUES
 (29, 17, 'S', 3, 1, '2024-07-24 15:53:41', '2024-07-24 15:53:41'),
@@ -322,31 +235,15 @@ INSERT INTO `product_detail` (`product_detail_id`, `product_id`, `size`, `price`
 (97, 51, 'S', 3.5, 1, '2024-07-24 17:32:32', '2024-07-24 17:32:32'),
 (98, 51, 'L', 4.5, 1, '2024-07-24 17:32:32', '2024-07-24 17:32:32');
 
--- --------------------------------------------------------
-
---
--- Cấu trúc bảng cho bảng `role`
---
-
 CREATE TABLE `role` (
   `role_id` int(10) NOT NULL,
   `name` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Đang đổ dữ liệu cho bảng `role`
---
-
 INSERT INTO `role` (`role_id`, `name`) VALUES
 (1, 'Admin'),
 (2, 'Manager'),
 (3, 'Staff');
-
--- --------------------------------------------------------
-
---
--- Cấu trúc bảng cho bảng `working_time`
---
 
 CREATE TABLE `working_time` (
   `working_time_id` int(10) NOT NULL,
@@ -354,181 +251,91 @@ CREATE TABLE `working_time` (
   `durant` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Đang đổ dữ liệu cho bảng `working_time`
---
-
 INSERT INTO `working_time` (`working_time_id`, `name`, `durant`) VALUES
 (1, 'Morning Shift', '7:00 AM'),
 (2, 'Afternoon Shift', '3:00 PM');
 
---
--- Chỉ mục cho các bảng đã đổ
---
-
---
--- Chỉ mục cho bảng `account`
---
 ALTER TABLE `account`
   ADD PRIMARY KEY (`account_id`),
   ADD KEY `role_id` (`role_id`);
 
---
--- Chỉ mục cho bảng `category`
---
 ALTER TABLE `category`
   ADD PRIMARY KEY (`category_id`);
 
---
--- Chỉ mục cho bảng `control`
---
 ALTER TABLE `control`
   ADD PRIMARY KEY (`control_id`),
   ADD KEY `working_time_id` (`working_time_id`),
   ADD KEY `account_id` (`account_id`);
 
---
--- Chỉ mục cho bảng `orders`
---
 ALTER TABLE `orders`
   ADD PRIMARY KEY (`order_id`),
   ADD KEY `account_id` (`account_id`);
 
---
--- Chỉ mục cho bảng `order_detail`
---
 ALTER TABLE `order_detail`
   ADD PRIMARY KEY (`order_detail_id`),
   ADD KEY `order_id` (`order_id`),
   ADD KEY `product_detail_id` (`product_detail_id`);
 
---
--- Chỉ mục cho bảng `product`
---
 ALTER TABLE `product`
   ADD PRIMARY KEY (`product_id`),
   ADD KEY `category_id` (`category_id`);
 
---
--- Chỉ mục cho bảng `product_detail`
---
 ALTER TABLE `product_detail`
   ADD PRIMARY KEY (`product_detail_id`),
   ADD KEY `product_id` (`product_id`);
 
---
--- Chỉ mục cho bảng `role`
---
 ALTER TABLE `role`
   ADD PRIMARY KEY (`role_id`);
 
---
--- Chỉ mục cho bảng `working_time`
---
 ALTER TABLE `working_time`
   ADD PRIMARY KEY (`working_time_id`);
 
---
--- AUTO_INCREMENT cho các bảng đã đổ
---
-
---
--- AUTO_INCREMENT cho bảng `account`
---
 ALTER TABLE `account`
   MODIFY `account_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 
---
--- AUTO_INCREMENT cho bảng `category`
---
 ALTER TABLE `category`
   MODIFY `category_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
---
--- AUTO_INCREMENT cho bảng `control`
---
 ALTER TABLE `control`
   MODIFY `control_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=223;
 
---
--- AUTO_INCREMENT cho bảng `orders`
---
 ALTER TABLE `orders`
   MODIFY `order_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=56;
 
---
--- AUTO_INCREMENT cho bảng `order_detail`
---
 ALTER TABLE `order_detail`
   MODIFY `order_detail_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=118;
 
---
--- AUTO_INCREMENT cho bảng `product`
---
 ALTER TABLE `product`
   MODIFY `product_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
 
---
--- AUTO_INCREMENT cho bảng `product_detail`
---
 ALTER TABLE `product_detail`
   MODIFY `product_detail_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=99;
 
---
--- AUTO_INCREMENT cho bảng `role`
---
 ALTER TABLE `role`
   MODIFY `role_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
---
--- AUTO_INCREMENT cho bảng `working_time`
---
 ALTER TABLE `working_time`
   MODIFY `working_time_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
---
--- Các ràng buộc cho các bảng đã đổ
---
 
---
--- Các ràng buộc cho bảng `account`
---
 ALTER TABLE `account`
   ADD CONSTRAINT `account_ibfk_1` FOREIGN KEY (`role_id`) REFERENCES `role` (`role_id`);
 
---
--- Các ràng buộc cho bảng `control`
---
 ALTER TABLE `control`
   ADD CONSTRAINT `control_ibfk_1` FOREIGN KEY (`working_time_id`) REFERENCES `working_time` (`working_time_id`),
   ADD CONSTRAINT `control_ibfk_2` FOREIGN KEY (`account_id`) REFERENCES `account` (`account_id`);
 
---
--- Các ràng buộc cho bảng `orders`
---
 ALTER TABLE `orders`
   ADD CONSTRAINT `order_ibfk_1` FOREIGN KEY (`account_id`) REFERENCES `account` (`account_id`);
 
---
--- Các ràng buộc cho bảng `order_detail`
---
 ALTER TABLE `order_detail`
   ADD CONSTRAINT `order_detail_ibfk_1` FOREIGN KEY (`order_id`) REFERENCES `orders` (`order_id`),
   ADD CONSTRAINT `order_detail_ibfk_2` FOREIGN KEY (`product_detail_id`) REFERENCES `product_detail` (`product_detail_id`);
 
---
--- Các ràng buộc cho bảng `product`
---
 ALTER TABLE `product`
   ADD CONSTRAINT `product_ibfk_1` FOREIGN KEY (`category_id`) REFERENCES `category` (`category_id`);
 
---
--- Các ràng buộc cho bảng `product_detail`
---
 ALTER TABLE `product_detail`
   ADD CONSTRAINT `product_detail_ibfk_1` FOREIGN KEY (`product_id`) REFERENCES `product` (`product_id`);
 COMMIT;
 
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
